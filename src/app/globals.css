@@ -1,0 +1,283 @@
+/* Google Fonts — loaded via CSS @import (no build-time network fetch required) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+/* CSS custom properties for font families */
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-playfair: 'Playfair Display', Georgia, serif;
+  --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Base styles — dark luxury theme defaults
+   ============================================================ */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-brand-black text-brand-light font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-brand-white;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  ::selection {
+    @apply bg-brand-burgundy text-brand-white;
+  }
+
+  /* Custom scrollbar — burgundy on dark */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-brand-dark; }
+  ::-webkit-scrollbar-thumb { @apply bg-brand-mid rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-brand-burgundy; }
+}
+
+/* ============================================================
+   Component classes — reusable across the site
+   ============================================================ */
+@layer components {
+
+  /* ── Buttons ── */
+  .btn-primary {
+    /* Burgundy filled CTA — main action button */
+    @apply inline-flex items-center justify-center gap-2
+           bg-brand-burgundy hover:bg-brand-burgundy-light active:bg-brand-burgundy-dark
+           text-brand-white font-body font-semibold tracking-widest uppercase
+           px-6 py-3 rounded transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:ring-offset-2 focus:ring-offset-brand-black
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    /* Burgundy bordered — secondary action */
+    @apply inline-flex items-center justify-center gap-2
+           border border-brand-burgundy text-brand-burgundy
+           hover:bg-brand-burgundy hover:text-brand-white
+           font-body font-semibold tracking-widest uppercase
+           px-6 py-3 rounded transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:ring-offset-2 focus:ring-offset-brand-black;
+  }
+
+  .btn-gold {
+    /* Gold filled — premium CTA e.g. "Book VIP Service" */
+    @apply inline-flex items-center justify-center gap-2
+           bg-brand-gold hover:bg-brand-gold-light active:bg-brand-gold
+           text-brand-black font-body font-bold tracking-widest uppercase
+           px-6 py-3 rounded transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-black;
+  }
+
+  .btn-ghost {
+    /* Ghost — subtle action with hover */
+    @apply inline-flex items-center justify-center gap-2
+           text-brand-muted hover:text-brand-light
+           font-body font-medium
+           px-4 py-2 rounded transition-colors duration-200;
+  }
+
+  /* ── Form elements ── */
+  .input {
+    /* Dark input with focus ring */
+    @apply w-full bg-brand-dark border border-brand-mid text-brand-white
+           placeholder:text-brand-muted rounded px-4 py-3 font-body
+           focus:outline-none focus:border-brand-burgundy focus:ring-1 focus:ring-brand-burgundy
+           transition-colors duration-200;
+  }
+
+  .label {
+    /* Small uppercase tracking label */
+    @apply block text-xs font-semibold tracking-widest uppercase text-brand-muted mb-1;
+  }
+
+  .select {
+    /* Styled select dropdown */
+    @apply w-full bg-brand-dark border border-brand-mid text-brand-white
+           rounded px-4 py-3 font-body appearance-none
+           focus:outline-none focus:border-brand-burgundy focus:ring-1 focus:ring-brand-burgundy
+           transition-colors duration-200 cursor-pointer;
+  }
+
+  /* ── Cards ── */
+  .card {
+    /* Base card — dark background with mid border */
+    @apply bg-brand-dark border border-brand-mid rounded-lg overflow-hidden;
+  }
+
+  .card-hover {
+    /* Interactive card — lift + burgundy border tint + warm glow on hover */
+    @apply card transition-all duration-300
+           hover:-translate-y-1 hover:border-brand-burgundy/40
+           hover:shadow-[0_8px_40px_rgba(139,26,58,0.2)];
+  }
+
+  .glass-card {
+    /* Frosted glass effect for service cards */
+    @apply bg-brand-dark/60 backdrop-blur-md border border-brand-mid/60
+           rounded-xl overflow-hidden;
+  }
+
+  /* ── Layout ── */
+  .container-site {
+    /* Max-width centred container with responsive horizontal padding */
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    /* Consistent vertical spacing between homepage sections */
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .section-tag {
+    /* Uppercase eyebrow text with gold left-line decoration */
+    @apply inline-flex items-center gap-3
+           text-xs font-bold tracking-[0.3em] uppercase text-brand-gold
+           before:content-[''] before:w-8 before:h-px before:bg-brand-gold;
+  }
+
+  /* ── Badges ── */
+  .badge-new {
+    /* Gold "New" pill badge */
+    @apply inline-flex items-center px-2 py-0.5 rounded-full
+           text-xs font-bold tracking-wide uppercase
+           bg-brand-gold/20 text-brand-gold border border-brand-gold/30;
+  }
+
+  .badge-sale {
+    /* Rose "Sale" pill badge */
+    @apply inline-flex items-center px-2 py-0.5 rounded-full
+           text-xs font-bold tracking-wide uppercase
+           bg-brand-rose/20 text-brand-rose border border-brand-rose/30;
+  }
+
+  .badge-raw {
+    /* "Raw Hair" dark pill with gold text */
+    @apply inline-flex items-center px-2 py-0.5 rounded-full
+           text-xs font-bold tracking-wide uppercase
+           bg-brand-dark2 text-brand-gold border border-brand-gold/30;
+  }
+
+  .badge-instock {
+    /* Green "In Stock" pill */
+    @apply inline-flex items-center px-2 py-0.5 rounded-full
+           text-xs font-semibold
+           bg-emerald-950/50 text-emerald-400 border border-emerald-800/40;
+  }
+
+  .badge-outofstock {
+    /* Red "Out of Stock" pill */
+    @apply inline-flex items-center px-2 py-0.5 rounded-full
+           text-xs font-semibold
+           bg-red-950/50 text-red-400 border border-red-800/40;
+  }
+
+  /* ── Blog ── */
+  .prose-article {
+    /* Styles for full blog post HTML content */
+    @apply text-brand-light leading-relaxed;
+  }
+
+  .prose-article h2 {
+    @apply font-heading text-2xl text-brand-white mt-8 mb-3;
+  }
+
+  .prose-article p {
+    @apply mb-4;
+  }
+
+  .prose-article ul {
+    @apply list-disc list-inside mb-4 space-y-1 text-brand-muted;
+  }
+
+  .prose-article blockquote {
+    @apply border-l-4 border-brand-burgundy pl-4 italic text-brand-muted my-6;
+  }
+
+  .prose-article .tip {
+    @apply bg-brand-dark2 border border-brand-mid rounded-lg p-4 my-6;
+  }
+
+  /* ── Service card ── */
+  .service-card {
+    /* Appointment service card with icon, duration, price, book button */
+    @apply glass-card p-6 flex flex-col gap-4
+           hover:border-brand-burgundy/50 transition-all duration-300;
+  }
+}
+
+/* ============================================================
+   Gold-to-rose gradient text — hero headlines
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #C9A84C 0%, #E8C96A 40%, #D4688A 80%, #A82248 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   Linen texture background — booking section, appointment area
+   ============================================================ */
+.bg-linen {
+  background-color: #180D10;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(61,31,40,0.15) 2px,
+      rgba(61,31,40,0.15) 4px
+    );
+}
+
+/* ============================================================
+   Before/After reveal — CSS hover split effect
+   ============================================================ */
+.before-after-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.before-after-card .after-img {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 50% 0 0);
+  transition: clip-path 0.6s cubic-bezier(0.77,0,0.175,1);
+}
+
+.before-after-card:hover .after-img {
+  clip-path: inset(0 0% 0 0);
+}
+
+/* ============================================================
+   Marquee scrolling strip
+   ============================================================ */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   Star rating — filled/empty stars
+   ============================================================ */
+.stars {
+  display: inline-flex;
+  gap: 2px;
+  color: #C9A84C; /* brand gold */
+}
