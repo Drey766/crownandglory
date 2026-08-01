@@ -1,51 +1,42 @@
 # Crown & Glory Hair Salon — Full Stack Website
 
-A complete hair salon website with:
-- **Online shop** — 107 real products (wigs, extensions, lace closures, lashes)
-- **Appointment booking** — 4-step booking with M-Pesa deposit and WhatsApp confirmation
-- **M-Pesa payments** — STK Push for orders and appointment deposits via Daraja API
-- **WhatsApp notifications** — instant alerts to owner + confirmation to clients
-- **Admin dashboard** — products, appointments, orders, services, blog, customers
-- **Blog** — 8 pre-seeded hair care articles
+Next.js 14 salon website: e-commerce shop + appointment booking + M-Pesa + WhatsApp.
 
----
-### Colours
-Edit `tailwind.config.ts` → `theme.extend.colors.brand`:
-- `brand.burgundy` — Primary CTA colour
-- `brand.gold` — Prices, badges, accents
-- `brand.black` — Page background
+## Quick Start
 
-## Project Structure
+1. `npm install`
+2. Fill in `.env.local` with your Supabase, M-Pesa, and WhatsApp credentials
+3. In Supabase SQL Editor, run in order:
+   - `supabase-schema.sql`
+   - `seed-services.sql`
+   - `seed-products.sql`
+   - `seed-blogs.sql`
+4. Set your admin role: `UPDATE public.profiles SET role = 'admin' WHERE email = 'you@email.com';`
+5. `npm run dev` → http://localhost:3000
 
-```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── page.tsx            # Home (useEffect data fetch)
-│   ├── shop/               # Shop + product detail
-│   ├── services/           # Services listing
-│   ├── book/               # Multi-step booking
-│   ├── blog/               # Blog list + post
-│   ├── cart/               # Cart page
-│   ├── wishlist/           # Wishlist
-│   ├── checkout/           # M-Pesa checkout
-│   ├── contact/            # Contact + WhatsApp form
-│   ├── account/            # Orders + appointments history
-│   ├── admin/              # Admin dashboard
-│   └── api/                # API routes
-├── components/
-│   ├── layout/             # Navbar, Footer
-│   ├── home/               # Hero, homepage sections
-│   ├── booking/            # 4-step booking components
-│   ├── services/           # ServiceCard
-│   ├── shop/               # ProductCard
-│   ├── cart/               # CartDrawer
-│   └── ui/                 # AuthModal
-├── context/                # Cart, Wishlist, Auth contexts
-├── hooks/                  # useDebounce
-├── lib/                    # Supabase client, utilities
-└── types/                  # TypeScript interfaces
+## Key Files
+
+- `supabase-schema.sql` — all tables, RLS, storage bucket
+- `seed-products.sql` — 107 hair products (wigs, extensions, lace closures, lashes)
+- `seed-services.sql` — 24 salon services
+- `seed-blogs.sql` — 8 blog articles (uses dollar-quoting to avoid apostrophe SQL errors)
+- `src/hooks/useDebounce.ts` — debounced search (400ms) used on every search input
+- `src/app/api/appointments/route.ts` — booking validation + M-Pesa + WhatsApp
+- `src/app/api/orders/route.ts` — order creation + M-Pesa STK push + WhatsApp
+- `src/app/admin/page.tsx` — full CRUD dashboard
+
+## M-Pesa Sandbox
+
+Default is sandbox mode (sandbox.safaricom.co.ke). For production, replace with api.safaricom.co.ke in both API route files.
+
+Use ngrok for local callback testing: `npx ngrok http 3000`
+
+## Set Admin User (after first signup)
+
+```sql
+UPDATE public.profiles SET role = 'admin' WHERE email = 'your@email.com';
 ```
 
----
+## Tech Stack
 
-For setup assistance, message us via WhatsApp or open an issue in this repository.
+Next.js 14 · Tailwind CSS · Supabase · M-Pesa Daraja · WhatsApp Business Cloud API · Vercel
