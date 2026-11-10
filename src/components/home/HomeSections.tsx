@@ -150,10 +150,10 @@ export function WhyUsSection() {
 
 // ── Before / After Gallery ────────────────────────────────
 const BEFORE_AFTER = [
-  { label: "Wig Installation", before: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=700&fit=crop", after: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&h=700&fit=crop" },
-  { label: "Hair Coloring", before: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&h=700&fit=crop", after: "https://images.unsplash.com/photo-1488716820095-cbe80883c496?w=600&h=700&fit=crop" },
-  { label: "Box Braids", before: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600&h=700&fit=crop", after: "https://images.unsplash.com/photo-1502764613149-7f1d229e230f?w=600&h=700&fit=crop" },
-  { label: "Extensions", before: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=600&h=700&fit=crop", after: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=700&fit=crop" },
+  { label: "Wig Installation", before: "/transformations/wig-before.jpg", after: "/transformations/wig-after.jpg" },
+  { label: "Hair Coloring", before: "/transformations/coloring-before.jpg", after: "/transformations/coloring-after.jpg" },
+  { label: "Box Braids", before: "/transformations/braids-before.jpg", after: "/transformations/braids-after.jpg" },
+  { label: "Short Cut", before: "/transformations/cut-before.jpg", after: "/transformations/cut-after.jpg" },
 ];
 
 export function BeforeAfterSection() {
